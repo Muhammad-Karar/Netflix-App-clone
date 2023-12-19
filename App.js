@@ -3,7 +3,8 @@ import { StyleSheet, Text, View, TouchableOpacity, FlatList, Image } from 'react
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Carousel from './Screens/Carousel';
-import Signup from './Screens/Signup'
+import Signup from './Screens/Signup';
+import Login from './Screens/Login';
 
 const stack = createNativeStackNavigator();
 
@@ -21,6 +22,7 @@ export default function App() {
       <stack.Navigator initialRouteName='Carousel' screenOptions={{headerShown: false, headerStyle: {backgroundColor: 'black'}}}>
         <stack.Screen name='Carousel' component={Carousel}/>
         <stack.Screen name='Signup' component={Signup}/>
+        <stack.Screen name='Login' component={Login}/>
       </stack.Navigator>
     </NavigationContainer>
   );

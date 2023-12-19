@@ -27,11 +27,15 @@ export default function Carousel({navigation}) {
           <View style={styles.topHeader}>
 
             <Image source={require('../assets/logo.png')} style={styles.logo} />
-
+            
+            <TouchableOpacity style={styles.firstHeader}>
             <Text style={styles.headerText}>PRIVACY</Text>
+            </TouchableOpacity>
 
-            <Text style={styles.secondHeaderText}>LOG IN</Text>
-
+            <TouchableOpacity style={styles.secondHeader} onPress={() => navigation.navigate('Login')}>
+                    <Text style={styles.secondHeaderText}>LOG IN</Text>
+            </TouchableOpacity>
+            
             <Entypo name='dots-three-vertical' size={24} color='#d3d3d3' />
 
           </View>
@@ -88,14 +92,14 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#fff',
-    fontSize: 40,
+    fontSize: 50,
     marginBottom: 20,
     fontWeight: 'bold',
     textAlign: 'center'
   },
   text2: {
     color: '#fff',
-    fontSize: 15,
+    fontSize: 25,
     marginBottom: 80,
     textAlign: 'center'
   },
@@ -114,8 +118,8 @@ const styles = StyleSheet.create({
 
   },
   topHeader: {
-    position: 'absolute',
-    marginTop: 45,
+    position: 'relative',
+    marginTop: 30,
     marginLeft: 5,
     marginRight: 5,
     // backgroundColor: 'blue',
@@ -132,15 +136,22 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 17,
     fontWeight: 'bold',
-    marginLeft: 110,
-    flex: 1,
-    textAlign: 'right',
   },
   secondHeaderText: {
     color: 'white',
     fontSize: 17,
     fontWeight: 'bold',
-    marginRight: 20,
+
+  },
+  secondHeader: {
+    // marginRight: 5,
+    flex: 1,
+    textAlign: 'right',
+    marginLeft: 25,
+  },
+  firstHeader: {
+    // marginRight: 5,
+    marginLeft: 110,
     flex: 1,
     textAlign: 'right',
   }
