@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   },
   topHeader: {
     position: 'relative',
-    marginTop: 30,
+    marginTop: '12%',
     marginLeft: 5,
     marginRight: 5,
     // backgroundColor: 'blue',

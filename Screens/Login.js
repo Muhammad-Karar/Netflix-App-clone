@@ -1,14 +1,30 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View,TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View,TextInput, TouchableOpacity, Image, Linking } from 'react-native';
 import React, { useState } from 'react';
-import { Entypo } from 'react-native-vector-icons';
+import { Entypo, AntDesign } from 'react-native-vector-icons';
 
 
 export default function Login({navigation}) {
   const [email, setEmail] = React.useState('');
   const [Password, setPass] = React.useState('');
+
+
+   const handleForgotPassword = () => {
+    // Replace 'https://example.com/forgot-password' with your actual forgot password URL
+    const forgotPasswordURL = 'https://www.netflix.com/pk/loginhelp?fromApp=true&netflixsource=android';
+
+    // Open the URL in the device's default browser
+    Linking.openURL(forgotPasswordURL).catch((err) =>
+      console.error('Error opening URL: ', err)
+    );
+  };
+
   return (
     <View style={styles.container}>
+      <Image source={require('../assets/namepic1.png')} style={styles.nameImg}/>
+      <TouchableOpacity style={styles.icon} onPress={() => navigation.goBack()}>
+      <AntDesign name='arrowleft' size={30} color='white' />
+      </TouchableOpacity>
       <View style={styles.loginbox}>
       <TextInput style={styles.textField} placeholderTextColor='white' placeholder='Email or phone number' onChangeText={setEmail} value={email} />
       <TextInput style={styles.textField} placeholderTextColor='white' placeholder='Password' onChangeText={setPass} value={Password} />
@@ -17,7 +33,10 @@ export default function Login({navigation}) {
         <Text style={styles.buttonText}>Sign In</Text>
       </TouchableOpacity>
 
-      <Text style={styles.text1}>Forgot Password?</Text>
+      <TouchableOpacity onPress={handleForgotPassword}>
+        <Text style={styles.text1}>Forgot Password?</Text>
+      </TouchableOpacity>
+
       <TouchableOpacity onPress={() => navigation.goBack()}>
       <Text style={styles.text1}>New to Netflix? Sign up now</Text>
       </TouchableOpacity>
@@ -43,7 +62,7 @@ const styles = StyleSheet.create({
     width: '95%',
     height: '85%',
     marginLeft: '2.5%',
-    marginTop: '22%',
+    marginTop: '28%',
   },
   text1: {
     fontSize: 23,
@@ -93,11 +112,18 @@ buttonText: {
 },
 icon: {
   position: 'absolute',
-  right: 50, 
-  top: 80, 
+  left: '5%', 
+  top: '7%', 
   // backgroundColor: 'red',
   width: 30,
   height: 30,
   
-}
+},
+nameImg: {
+  width: '40%',
+  height: 35,
+  position: 'absolute',
+  left: '15%', 
+  top: '7%', 
+},
 });
