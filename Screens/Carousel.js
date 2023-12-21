@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, Linking,} from 'react-native';
 import Swiper from 'react-native-swiper';
 import { Entypo } from 'react-native-vector-icons';
-
+import React, { useState } from 'react';
 
 const carouselData = [
   { image: require('../assets/sp1.jpg'), text: 'Unlimited movies, TV shows & more', text2: 'Watch anywhere. Cancel anytime.' },
@@ -11,8 +11,40 @@ const carouselData = [
   { image: require('../assets/sp4.jpg'), text: 'Watch everywhere', text2: 'Stream on your phone, tablet, laptop and TV' },
 ];
 
+const handlePrivacy = () => {
+  // Replace 'https://example.com/forgot-password' with your actual forgot password URL
+  const privacyURL = 'https://help.netflix.com/legal/privacy?netflixsource=android&fromApp=true';
 
-export default function Carousel({navigation}) {
+  // Open the URL in the device's default browser
+  Linking.openURL(privacyURL).catch((err) =>
+    console.error('Error opening URL: ', err)
+  );
+};
+
+
+
+
+
+
+export default function Carousel({ navigation }) {
+  const [isDropdownVisible, setDropdownVisible] = useState(false);
+  const handleDropdownPress = () => {
+    setDropdownVisible(!isDropdownVisible);
+  };
+
+  const handleOptionPress = (option) => {
+    // Implement logic based on the selected option
+    if (option === 'Privacy') {
+      // Handle Privacy option
+      console.log('Privacy option selected');
+    } else if (option === 'FAQ') {
+      // Handle FAQ option
+      console.log('FAQ option selected');
+    }
+
+    // Close the dropdown
+    setDropdownVisible(false);
+  };
 
   return (
     <Swiper style={styles.wrapper} showsButtons={false} loop={false} horizontal={true}
@@ -27,16 +59,29 @@ export default function Carousel({navigation}) {
           <View style={styles.topHeader}>
 
             <Image source={require('../assets/logo.png')} style={styles.logo} />
-            
-            <TouchableOpacity style={styles.firstHeader}>
-            <Text style={styles.headerText}>PRIVACY</Text>
+
+            <TouchableOpacity style={styles.firstHeader} onPress={handlePrivacy}>
+              <Text style={styles.headerText}>PRIVACY</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.secondHeader} onPress={() => navigation.navigate('Login')}>
-                    <Text style={styles.secondHeaderText}>LOG IN</Text>
+              <Text style={styles.secondHeaderText}>LOG IN</Text>
             </TouchableOpacity>
-            
-            <Entypo name='dots-three-vertical' size={24} color='#d3d3d3' />
+
+            <TouchableOpacity onPress={handleDropdownPress}>
+        <Entypo name='dots-three-vertical' size={24} color='#d3d3d3' />
+      </TouchableOpacity>
+
+      {isDropdownVisible && (
+        <View style={styles.dropdownContainer}>
+          <TouchableOpacity onPress={() => handleOptionPress('Privacy')}>
+            <Text style={styles.optionText}>Privacy</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handleOptionPress('FAQ')}>
+            <Text style={styles.optionText}>FAQ</Text>
+          </TouchableOpacity>
+        </View>
+      )}
 
           </View>
           <View style={styles.overlay}>
@@ -67,6 +112,21 @@ const styles = StyleSheet.create({
   wrapper: {},
   slide: {
     flex: 1,
+  },
+  dropdownContainer: {
+    position: 'absolute',
+    top: 40, // Adjust the top position based on your layout
+    right: 10, // Adjust the right position based on your layout
+    backgroundColor: 'white',
+    elevation: 5,
+    padding: 10,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#d3d3d3',
+  },
+  optionText: {
+    fontSize: 16,
+    padding: 10,
   },
   backgroundImage: {
     flex: 1,
