@@ -1,23 +1,30 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, props } from 'react';
 import { Entypo } from 'react-native-vector-icons';
 
 export default function Signup({navigation}) {
-  const [email, setEmail] = React.useState('');
+  const [Email, setEmail] = React.useState('');
 
   return (
     <View style={styles.container}>
+
       <TouchableOpacity style={styles.icon} onPress={() => navigation.goBack()}>
       <Entypo name='cross' size={30} color='black' />
       </TouchableOpacity>
+
       <View style={styles.signinBox}>
+
       <Text style={styles.htext1}>Ready to watch?</Text>
+
       <Text style={styles.text2}>Enter your email to create or sign in to your account.</Text>
-      <TextInput style={styles.textField} placeholder='Email' onChangeText={setEmail} value={email} />
-      <TouchableOpacity style={styles.button}>
+
+      <TextInput style={styles.textField} placeholder='Email' onChangeText={(input) => setEmail(input)} value={Email} />
+
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('signup2', {Email})}>
         <Text style={styles.buttonText}>GET STARTED</Text>
       </TouchableOpacity>
+      
       </View>
     </View>
   );
@@ -52,7 +59,7 @@ const styles = StyleSheet.create({
   },
   textField: {
     borderColor: 'blue',
-    color: 'white',
+    color: 'black',
     borderRadius: 3,
     width: '100%',
     height: 70,

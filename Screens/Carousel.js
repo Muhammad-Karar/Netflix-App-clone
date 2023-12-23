@@ -4,6 +4,7 @@ import Swiper from 'react-native-swiper';
 import { Entypo } from 'react-native-vector-icons';
 import React, { useState } from 'react';
 
+
 const carouselData = [
   { image: require('../assets/sp1.jpg'), text: 'Unlimited movies, TV shows & more', text2: 'Watch anywhere. Cancel anytime.' },
   { image: require('../assets/sp2.jpg'), text: 'There s a plan for every fan', text2: 'Plan start at Rs 250' },
@@ -14,7 +15,6 @@ const carouselData = [
 const handlePrivacy = () => {
   // Replace 'https://example.com/forgot-password' with your actual forgot password URL
   const privacyURL = 'https://help.netflix.com/legal/privacy?netflixsource=android&fromApp=true';
-
   // Open the URL in the device's default browser
   Linking.openURL(privacyURL).catch((err) =>
     console.error('Error opening URL: ', err)
@@ -27,24 +27,27 @@ const handlePrivacy = () => {
 
 
 export default function Carousel({ navigation }) {
+
   const [isDropdownVisible, setDropdownVisible] = useState(false);
-  const handleDropdownPress = () => {
-    setDropdownVisible(!isDropdownVisible);
-  };
 
   const handleOptionPress = (option) => {
     // Implement logic based on the selected option
-    if (option === 'Privacy') {
+    if (option === 'Help') {
       // Handle Privacy option
-      console.log('Privacy option selected');
+      console.log('Help option selected');
     } else if (option === 'FAQ') {
       // Handle FAQ option
       console.log('FAQ option selected');
     }
-
     // Close the dropdown
     setDropdownVisible(false);
+  
   };
+
+  const handleDropdownPress = () => {
+    setDropdownVisible(!isDropdownVisible);
+  };
+
 
   return (
     <Swiper style={styles.wrapper} showsButtons={false} loop={false} horizontal={true}
@@ -74,12 +77,12 @@ export default function Carousel({ navigation }) {
 
       {isDropdownVisible && (
         <View style={styles.dropdownContainer}>
-          <TouchableOpacity onPress={() => handleOptionPress('Privacy')}>
-            <Text style={styles.optionText}>Privacy</Text>
-          </TouchableOpacity>
           <TouchableOpacity onPress={() => handleOptionPress('FAQ')}>
-            <Text style={styles.optionText}>FAQ</Text>
+            <Text style={styles.optionText}>FAQs</Text>
           </TouchableOpacity>
+          <TouchableOpacity onPress={() => handleOptionPress('Help')}>
+            <Text style={styles.optionText}>Help</Text>
+          </TouchableOpacity>  
         </View>
       )}
 
@@ -115,18 +118,21 @@ const styles = StyleSheet.create({
   },
   dropdownContainer: {
     position: 'absolute',
-    top: 40, // Adjust the top position based on your layout
-    right: 10, // Adjust the right position based on your layout
+    top: -15, // Adjust the top position based on your layout
+    right: 15, // Adjust the right position based on your layout
     backgroundColor: 'white',
     elevation: 5,
-    padding: 10,
+    padding: 5,
     borderRadius: 5,
     borderWidth: 1,
     borderColor: '#d3d3d3',
+    width: '50%',
+    zIndex: 3,
   },
   optionText: {
-    fontSize: 16,
+    fontSize: 18,
     padding: 10,
+    fontWeight: 'bold',
   },
   backgroundImage: {
     flex: 1,
