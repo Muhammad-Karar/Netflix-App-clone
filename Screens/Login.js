@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
 
   },
   nameImg: {
-    width: '40%',
+    width: '30%',
     height: 35,
     position: 'absolute',
     left: '15%',
