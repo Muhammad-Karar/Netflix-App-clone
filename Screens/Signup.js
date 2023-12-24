@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, } from 'react-nati
 import React, { useState, props } from 'react';
 import { Entypo } from 'react-native-vector-icons';
 
+
 export default function Signup({navigation}) {
   const [Email, setEmail] = React.useState('');
 
@@ -19,7 +20,7 @@ export default function Signup({navigation}) {
 
       <Text style={styles.text2}>Enter your email to create or sign in to your account.</Text>
 
-      <TextInput style={styles.textField} placeholder='Email' onChangeText={(input) => setEmail(input)} value={Email} />
+      <TextInput style={styles.textField} placeholder='Email' onChangeText={(Email) => setEmail(Email)} value={Email} />
 
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('signup2', {Email})}>
         <Text style={styles.buttonText}>GET STARTED</Text>

@@ -3,11 +3,22 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, Linking } f
 import React, { useState } from 'react';
 import { Entypo, AntDesign } from 'react-native-vector-icons';
 import ViewMoreText from 'react-native-view-more-text';
+import { firebase } from '../Firebase/Config';
+
+
 
 export default function Login({ navigation }) {
   const [email, setEmail] = React.useState('');
   const [Password, setPass] = React.useState('');
 
+  loginUser = async (email, Password) => {
+    try{
+      await firebase.auth().signInWithEmailAndPassword(email, Password)
+    }
+    catch (error){
+      alert(error.message)
+    }
+  }
 
   const handleForgotPassword = () => {
     // Replace 'https://example.com/forgot-password' with your actual forgot password URL
@@ -38,10 +49,14 @@ export default function Login({ navigation }) {
       </TouchableOpacity>
 
       <View style={styles.loginbox}>
-        <TextInput style={styles.textField} placeholderTextColor='white' placeholder='Email or phone number' onChangeText={setEmail} value={email} />
-        <TextInput style={styles.textField} placeholderTextColor='white' placeholder='Password' onChangeText={setPass} value={Password} />
+        <TextInput style={styles.textField} placeholderTextColor='white' 
+        placeholder='Email or phone number' onChangeText={(email) => setEmail(email)} value={email} />
 
-        <TouchableOpacity style={styles.button}>
+        <TextInput style={styles.textField} placeholderTextColor='white'
+         placeholder='Password' onChangeText={(Password) => setPass(Password)} value={Password} 
+         secureTextEntry={true}/>
+
+        <TouchableOpacity style={styles.button} onPress={() => loginUser(email, Password)}>
           <Text style={styles.buttonText}>Sign In</Text>
         </TouchableOpacity>
 

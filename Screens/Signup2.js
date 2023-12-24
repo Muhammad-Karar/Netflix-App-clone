@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Entypo, AntDesign } from 'react-native-vector-icons';
 import { CheckBox } from 'react-native-elements';
 import { useRoute } from '@react-navigation/native';
-
+import { firebase } from '../Firebase/Config';
 
 export default function Signup2({ navigation }, props) {
     const route = useRoute();
@@ -12,10 +12,39 @@ export default function Signup2({ navigation }, props) {
     const [Password, setPass] = React.useState('');
     const [isChecked, setChecked] = useState(false);
 
+
+    registerUser = async (Email, Password) =>{
+        await firebase.auth().createUserWithEmailAndPassword(Email, Password)
+        .then(() => {
+            firebase.auth().currentUser.sendEmailVerification({
+                handleCodeInApp: true,
+                url:'https://netflix-app-clone-e5665.firebaseapp.com',
+            })
+            .then(() =>{
+                alert('Verification email send successfully')
+            }).catch((error) =>{
+                alert(error.message)
+            })
+            .then(() =>{
+               firebase.firestore().collection('UsersData')
+               .doc(firebase.auth().currentUser.uid)
+               .set({
+                Email, Password
+               }) 
+            })
+            .catch((error) => {
+                alert(error.message)
+            })
+        })
+        .catch((error) => {
+            alert(error.message)
+        })
+    }
+
+
     const handleCheckboxToggle = () => {
         setChecked(!isChecked);
     };
-
 
 
     return (
@@ -43,13 +72,16 @@ export default function Signup2({ navigation }, props) {
 
                 <TextInput style={styles.textField} placeholderTextColor='black'  value={Email} placeholder='Email' editable={false} />
 
-                <TextInput style={styles.textField} placeholderTextColor='black' placeholder='Password' onChangeText={setPass} value={Password} />
+                <TextInput style={styles.textField} placeholderTextColor='black' 
+                placeholder='Password' onChangeText={(Password) => setPass(Password)} value={Password} 
+                secureTextEntry={true}/>
 
                 <CheckBox
                     title='Please do not email me Netflix special offers.' checked={isChecked} onPress={handleCheckboxToggle} checkedColor='blue'
                     uncheckedColor='black' textStyle={{ fontSize: 18, color: 'black', }}
                     containerStyle={{ backgroundColor: 'white', marginLeft: -2 }} />
-                <TouchableOpacity style={styles.button}>
+
+                <TouchableOpacity style={styles.button} onPress={() => registerUser(Email, Password)}>
                     <Text style={styles.buttonText}>CREATE ACCOUNT</Text>
                 </TouchableOpacity>
 
