@@ -9,6 +9,9 @@ import Signup2 from './Screens/Signup2';
 import { firebase } from './Firebase/Config';
 import { useEffect, useState } from 'react';
 import Main from './Screens/Main';
+import Help from './Screens/Help';
+import Verify from './Screens/Verify';
+
 
 const stack = createNativeStackNavigator();
 
@@ -58,12 +61,15 @@ function App() {
         <stack.Screen name='Signup' component={Signup} options={{ headerShown: false }} />
         <stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
         <stack.Screen name='signup2' component={Signup2} options={{ headerShown: false }} />
+        <stack.Screen name='help' component={Help} options={{ headerShown: false }} />
       </stack.Navigator>
     );
   }
 
   return(
     <stack.Navigator>
+    <stack.Screen name='verify' component={Verify} options={{ headerShown: false }} />
+    <stack.Screen name='help' component={Help} options={{ headerShown: false }} />
     <stack.Screen name='main' component={Main}  options={{ headerShown: false }}/>
     </stack.Navigator>
   )

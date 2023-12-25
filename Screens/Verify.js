@@ -6,45 +6,8 @@ import { CheckBox } from 'react-native-elements';
 import { useRoute } from '@react-navigation/native';
 import { firebase } from '../Firebase/Config';
 
-export default function Signup2({ navigation }) {
-    const route = useRoute();
-    const { Email } = route.params;
-    const [Password, setPass] = React.useState('');
-    const [isChecked, setChecked] = useState(false);
 
-
-    registerUser = async (Email, Password) =>{
-        await firebase.auth().createUserWithEmailAndPassword(Email, Password)
-        .then(() => {
-            firebase.auth().currentUser.sendEmailVerification({
-                handleCodeInApp: true,
-                url:'https://netflix-app-clone-e5665.firebaseapp.com',
-            })
-            .then(() =>{
-                alert('Verification email send successfully')
-            }).catch((error) =>{
-                alert(error.message)
-            })
-            .then(() =>{
-               firebase.firestore().collection('UsersData')
-               .doc(firebase.auth().currentUser.uid)
-               .set({
-                Email, Password
-               }) 
-            })
-            .catch((error) => {
-                alert(error.message)
-            })
-        })
-        .catch((error) => {
-            alert(error.message)
-        })
-    }
-
-
-    const handleCheckboxToggle = () => {
-        setChecked(!isChecked);
-    };
+export default function Verify({ navigation }) {
 
 
     return (
@@ -58,31 +21,23 @@ export default function Signup2({ navigation }) {
                     <Text style={styles.headerText}>HELP</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.secondHeader} onPress={() => navigation.navigate('Login')}>
-                    <Text style={styles.secondHeaderText}>LOG IN</Text>
+                <TouchableOpacity style={styles.secondHeader} onPress={() => {firebase.auth().signOut()}}>
+                    <Text style={styles.secondHeaderText}>SIGN OUT</Text>
                 </TouchableOpacity>
 
             </View>
 
-            <View style={styles.signinBox}>
+            <View style={styles.verifyBox}>
 
-                <Text style={styles.htext1}>Unlimited movies, TV shows & more</Text>
+                <Text style={styles.htext1}>Finish signing up to start watching</Text>
 
-                <Text style={styles.text2}>Create an account and we'll send you an email with everything you need to know about Netflix.</Text>
+                <Text style={styles.text2}>Almost there! We just sent an email to</Text>
+                <Text style={styles.htext1}></Text>
 
-                <TextInput style={styles.textField} placeholderTextColor='black'  value={Email} placeholder='Email' editable={false} />
+                <Text style={styles.text3}>You're only a few Steps away from watching your favorite TV shows and movies.</Text>
 
-                <TextInput style={styles.textField} placeholderTextColor='black' 
-                placeholder='Password' onChangeText={(Password) => setPass(Password)} value={Password} 
-                secureTextEntry={true}/>
-
-                <CheckBox
-                    title='Please do not email me Netflix special offers.' checked={isChecked} onPress={handleCheckboxToggle} checkedColor='blue'
-                    uncheckedColor='black' textStyle={{ fontSize: 18, color: 'black', }}
-                    containerStyle={{ backgroundColor: 'white', marginLeft: -2 }} />
-
-                <TouchableOpacity style={styles.button} onPress={() => registerUser(Email, Password)}>
-                    <Text style={styles.buttonText}>CREATE ACCOUNT</Text>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('main')}>
+                    <Text style={styles.buttonText}>Go to Main Screen</Text>
                 </TouchableOpacity>
 
             </View>
@@ -99,21 +54,27 @@ const styles = StyleSheet.create({
         height: 500,
         paddingTop: '10%',
     },
-    signinBox: {
+    verifyBox: {
         // backgroundColor: 'blue',
-        width: '90%',
-        height: '90%',
-        marginLeft: 20,
+        width: '85%',
+        height: '60%',
+        marginLeft: '8%',
         marginTop: 20,
     },
     htext1: {
-        fontSize: 30,
+        fontSize: 35,
         fontWeight: 'bold',
         textAlign: 'left',
 
     },
     text2: {
-        fontSize: 27,
+        fontSize: 24,
+        textAlign: 'left',
+        marginTop: 20,
+        color: 'black'
+    },
+    text3: {
+        fontSize: 22,
         textAlign: 'left',
         marginTop: 20,
         color: 'black'
@@ -134,7 +95,7 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         width: '100%',
         height: 55,
-        marginTop: 20,
+        marginTop: '35%',
     },
     buttonText: {
         color: '#fff',
@@ -179,19 +140,19 @@ const styles = StyleSheet.create({
     },
     secondHeaderText: {
         color: 'black',
-        fontSize: 20,
+        fontSize: 19,
         fontWeight: 'bold',
-        letterSpacing: 1,
+        // letterSpacing: 1,
     },
     secondHeader: {
         // marginRight: 5,
         flex: 1,
         textAlign: 'right',
-        marginRight: '2%',
+        // marginRight: '2%',
     },
     firstHeader: {
         // marginRight: 5,
-        marginLeft: '57%',
+        marginLeft: '55%',
         flex: 1,
         textAlign: 'right',
     }

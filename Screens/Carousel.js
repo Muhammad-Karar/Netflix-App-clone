@@ -80,7 +80,7 @@ export default function Carousel({ navigation }) {
           <TouchableOpacity onPress={() => handleOptionPress('FAQ')}>
             <Text style={styles.optionText}>FAQs</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => handleOptionPress('Help')}>
+          <TouchableOpacity onPress={() => navigation.navigate('help')}>
             <Text style={styles.optionText}>Help</Text>
           </TouchableOpacity>  
         </View>
