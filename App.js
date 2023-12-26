@@ -11,10 +11,16 @@ import { useEffect, useState } from 'react';
 import Main from './Screens/Main';
 import Help from './Screens/Help';
 import Verify from './Screens/Verify';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {MaterialCommunityIcons, Feather, AntDesign, Entypo, FontAwesome, MaterialIcons} from 'react-native-vector-icons';
+import Home from './Screens/Home';
+import Games from './Screens/Games';
+import NewHot from './Screens/NewHot';
+import MyNetflix from './Screens/MyNetflix';
 
 
 const stack = createNativeStackNavigator();
-
+const bottomTab = createBottomTabNavigator();
 
 // export default function App() {
 //   return (
@@ -35,6 +41,41 @@ const stack = createNativeStackNavigator();
 //     flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center',
 //   },
 // });
+
+function BottomTab() {
+  return (
+    <bottomTab.Navigator screenOptions={{
+      headerShown: false, headerStyle: { backgroundColor: 'red' },
+      tabBarStyle: {
+        position: 'fixed', bottom: 0, left: 0, right: 0, elevation: 0, backgroundColor: 'black', borderColor: 'black',
+        height: '10%',
+      },
+      tabBarLabelStyle: { fontSize: 15, color: '#ffffff', marginBottom: 10, }
+    }}>
+      <bottomTab.Screen name='Home' component={Home} options={{
+          tabBarIcon: ({ white, size }) => (
+            <Entypo name="home" size={26} color={white} />
+          ),
+        }}/>
+      <bottomTab.Screen name='Games' component={Games} options={{
+          tabBarIcon: ({ white, size }) => (
+            <MaterialCommunityIcons name="account-details" size={26} color={white} />
+          ),
+        }}/>
+
+      <bottomTab.Screen name='NewHot' component={NewHot} options={{
+          tabBarIcon: ({ white, size }) => (
+            <MaterialCommunityIcons name="account" size={26} color={white} />
+          ),
+        }}/>
+        <bottomTab.Screen name='MyNetflix' component={MyNetflix} options={{
+          tabBarIcon: ({ white, size }) => (
+            <MaterialCommunityIcons name="account" size={26} color={white} />
+          ),
+        }}/>
+    </bottomTab.Navigator>
+  )
+}
 
 function App() {
   const [initializing, setInitializing] = useState(true);
@@ -70,7 +111,8 @@ function App() {
     <stack.Navigator>
     <stack.Screen name='verify' component={Verify} options={{ headerShown: false }} />
     <stack.Screen name='help' component={Help} options={{ headerShown: false }} />
-    <stack.Screen name='main' component={Main}  options={{ headerShown: false }}/>
+    <stack.Screen name='bottomtab' component={BottomTab}  options={{ headerShown: true }}/>
+    {/* <stack.Screen name='bottomTab' component={BottomTab}/> */}
     </stack.Navigator>
   )
 

@@ -36,7 +36,7 @@ export default function Verify({ navigation }) {
 
                 <Text style={styles.text3}>You're only a few Steps away from watching your favorite TV shows and movies.</Text>
 
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('main')}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('bottomtab')}>
                     <Text style={styles.buttonText}>Go to Main Screen</Text>
                 </TouchableOpacity>
 

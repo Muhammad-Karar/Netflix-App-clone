@@ -1,10 +1,10 @@
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { firebase } from '../Firebase/Config';
 
-export default function Main(){
+export default function MyNetflix(){
     return(
         <View style={styles.container}>
-            <Text>Welcome to Main Screen of Netflix</Text>
+            <Text>Welcome to MyNetflix Screen of Netflix</Text>
             {/* <TouchableOpacity style={styles.button} onPress={() => {firebase.auth().signOut()}}>
           <Text style={styles.buttonText}>Sign out</Text>
         </TouchableOpacity> */}
