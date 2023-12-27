@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TouchableOpacity, Linking,} from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, Linking, } from 'react-native';
 import Swiper from 'react-native-swiper';
 import { Entypo } from 'react-native-vector-icons';
 import React, { useState } from 'react';
@@ -22,10 +22,6 @@ const handlePrivacy = () => {
 };
 
 
-
-
-
-
 export default function Carousel({ navigation }) {
 
   const [isDropdownVisible, setDropdownVisible] = useState(false);
@@ -41,7 +37,7 @@ export default function Carousel({ navigation }) {
     }
     // Close the dropdown
     setDropdownVisible(false);
-  
+
   };
 
   const handleDropdownPress = () => {
@@ -72,19 +68,19 @@ export default function Carousel({ navigation }) {
             </TouchableOpacity>
 
             <TouchableOpacity onPress={handleDropdownPress}>
-        <Entypo name='dots-three-vertical' size={24} color='#d3d3d3' />
-      </TouchableOpacity>
+              <Entypo name='dots-three-vertical' size={24} color='#d3d3d3' />
+            </TouchableOpacity>
 
-      {isDropdownVisible && (
-        <View style={styles.dropdownContainer}>
-          <TouchableOpacity onPress={() => handleOptionPress('FAQ')}>
-            <Text style={styles.optionText}>FAQs</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate('help')}>
-            <Text style={styles.optionText}>Help</Text>
-          </TouchableOpacity>  
-        </View>
-      )}
+            {isDropdownVisible && (
+              <View style={styles.dropdownContainer}>
+                <TouchableOpacity onPress={() => handleOptionPress('FAQ')}>
+                  <Text style={styles.optionText}>FAQs</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('help')}>
+                  <Text style={styles.optionText}>Help</Text>
+                </TouchableOpacity>
+              </View>
+            )}
 
           </View>
           <View style={styles.overlay}>

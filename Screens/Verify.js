@@ -6,9 +6,7 @@ import { CheckBox } from 'react-native-elements';
 import { useRoute } from '@react-navigation/native';
 import { firebase } from '../Firebase/Config';
 
-
 export default function Verify({ navigation }) {
-
 
     return (
         <View style={styles.container}>
@@ -32,7 +30,7 @@ export default function Verify({ navigation }) {
                 <Text style={styles.htext1}>Finish signing up to start watching</Text>
 
                 <Text style={styles.text2}>Almost there! We just sent an email to</Text>
-                <Text style={styles.htext1}></Text>
+            <Text style={styles.htext1}></Text>
 
                 <Text style={styles.text3}>You're only a few Steps away from watching your favorite TV shows and movies.</Text>
 

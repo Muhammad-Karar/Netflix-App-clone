@@ -6,12 +6,11 @@ import { CheckBox } from 'react-native-elements';
 import { useRoute } from '@react-navigation/native';
 import { firebase } from '../Firebase/Config';
 
-export default function Signup2({ navigation }) {
+export default function Signup2({navigation}) {
     const route = useRoute();
     const { Email } = route.params;
     const [Password, setPass] = React.useState('');
     const [isChecked, setChecked] = useState(false);
-
 
     registerUser = async (Email, Password) =>{
         await firebase.auth().createUserWithEmailAndPassword(Email, Password)
@@ -81,7 +80,9 @@ export default function Signup2({ navigation }) {
                     uncheckedColor='black' textStyle={{ fontSize: 18, color: 'black', }}
                     containerStyle={{ backgroundColor: 'white', marginLeft: -2 }} />
 
-                <TouchableOpacity style={styles.button} onPress={() => registerUser(Email, Password)}>
+                <TouchableOpacity style={styles.button} onPress={() => {
+                    registerUser(Email, Password);
+                    }}>
                     <Text style={styles.buttonText}>CREATE ACCOUNT</Text>
                 </TouchableOpacity>
 

@@ -22,25 +22,6 @@ import MyNetflix from './Screens/MyNetflix';
 const stack = createNativeStackNavigator();
 const bottomTab = createBottomTabNavigator();
 
-// export default function App() {
-//   return (
-//     <NavigationContainer>
-//       <stack.Navigator initialRouteName='Carousel'>
-//         <stack.Screen name='Carousel' component={Carousel} options={{ headerShown: false }}/>
-//         <stack.Screen name='Signup' component={Signup} options={{ headerShown: false }}/>
-//         <stack.Screen name='Login' component={Login} options={{ headerShown: false }}/>
-//         <stack.Screen name='signup2' component={Signup2} options={{ headerShown: false }}/>
-//       </stack.Navigator>
-//     </NavigationContainer>
-//   );
-
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center',
-//   },
-// });
 
 function BottomTab() {
   return (
@@ -103,6 +84,7 @@ function App() {
         <stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
         <stack.Screen name='signup2' component={Signup2} options={{ headerShown: false }} />
         <stack.Screen name='help' component={Help} options={{ headerShown: false }} />
+
       </stack.Navigator>
     );
   }
@@ -112,7 +94,6 @@ function App() {
     <stack.Screen name='verify' component={Verify} options={{ headerShown: false }} />
     <stack.Screen name='help' component={Help} options={{ headerShown: false }} />
     <stack.Screen name='bottomtab' component={BottomTab}  options={{ headerShown: true }}/>
-    {/* <stack.Screen name='bottomTab' component={BottomTab}/> */}
     </stack.Navigator>
   )
 
@@ -127,3 +108,25 @@ export default () =>{
     </NavigationContainer>
   )
 }
+
+
+
+// export default function App() {
+//   return (
+//     <NavigationContainer>
+//       <stack.Navigator initialRouteName='Carousel'>
+//         <stack.Screen name='Carousel' component={Carousel} options={{ headerShown: false }}/>
+//         <stack.Screen name='Signup' component={Signup} options={{ headerShown: false }}/>
+//         <stack.Screen name='Login' component={Login} options={{ headerShown: false }}/>
+//         <stack.Screen name='signup2' component={Signup2} options={{ headerShown: false }}/>
+//       </stack.Navigator>
+//     </NavigationContainer>
+//   );
+
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center',
+//   },
+// });
