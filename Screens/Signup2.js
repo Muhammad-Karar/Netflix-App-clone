@@ -5,6 +5,8 @@ import { Entypo, AntDesign } from 'react-native-vector-icons';
 import { CheckBox } from 'react-native-elements';
 import { useRoute } from '@react-navigation/native';
 import { firebase } from '../Firebase/Config';
+import Verify from './Verify';
+
 
 export default function Signup2({navigation}) {
     const route = useRoute();
@@ -38,6 +40,7 @@ export default function Signup2({navigation}) {
         .catch((error) => {
             alert(error.message)
         })
+        
     }
 
 

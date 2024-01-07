@@ -12,7 +12,7 @@ import Main from './Screens/Main';
 import Help from './Screens/Help';
 import Verify from './Screens/Verify';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {MaterialCommunityIcons, Feather, AntDesign, Entypo, FontAwesome, MaterialIcons} from 'react-native-vector-icons';
+import {MaterialCommunityIcons, Feather, AntDesign, Entypo, FontAwesome, MaterialIcons, Ionicons} from 'react-native-vector-icons';
 import Home from './Screens/Home';
 import Games from './Screens/Games';
 import NewHot from './Screens/NewHot';
@@ -34,24 +34,24 @@ function BottomTab() {
       tabBarLabelStyle: { fontSize: 15, color: '#ffffff', marginBottom: 10, }
     }}>
       <bottomTab.Screen name='Home' component={Home} options={{
-          tabBarIcon: ({ white, size }) => (
-            <Entypo name="home" size={26} color={white} />
+          tabBarIcon: ({ color, size }) => (
+            <Entypo name="home" size={26} color="white"/>
           ),
         }}/>
       <bottomTab.Screen name='Games' component={Games} options={{
-          tabBarIcon: ({ white, size }) => (
-            <MaterialCommunityIcons name="account-details" size={26} color={white} />
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="game-controller" size={26} color="white" />
           ),
         }}/>
 
       <bottomTab.Screen name='NewHot' component={NewHot} options={{
-          tabBarIcon: ({ white, size }) => (
-            <MaterialCommunityIcons name="account" size={26} color={white} />
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="movie-play" size={26} color="white" />
           ),
         }}/>
         <bottomTab.Screen name='MyNetflix' component={MyNetflix} options={{
-          tabBarIcon: ({ white, size }) => (
-            <MaterialCommunityIcons name="account" size={26} color={white} />
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="account" size={26} color="white" />
           ),
         }}/>
     </bottomTab.Navigator>
@@ -76,24 +76,24 @@ function App() {
 
   if (initializing) return null;
 
-  if (!user) {
-    return (
-      <stack.Navigator>
-        <stack.Screen name='Carousel' component={Carousel} options={{ headerShown: false }} />
-        <stack.Screen name='Signup' component={Signup} options={{ headerShown: false }} />
-        <stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
-        <stack.Screen name='signup2' component={Signup2} options={{ headerShown: false }} />
-        <stack.Screen name='help' component={Help} options={{ headerShown: false }} />
+  // if (!user) {
+  //   return (
+  //     <stack.Navigator>
+  //       <stack.Screen name='Carousel' component={Carousel} options={{ headerShown: false }} />
+  //       <stack.Screen name='Signup' component={Signup} options={{ headerShown: false }} />
+  //       <stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
+  //       <stack.Screen name='signup2' component={Signup2} options={{ headerShown: false }} />
+  //       <stack.Screen name='help' component={Help} options={{ headerShown: false }} />
 
-      </stack.Navigator>
-    );
-  }
+  //     </stack.Navigator>
+  //   );
+  // }
 
   return(
     <stack.Navigator>
-    <stack.Screen name='verify' component={Verify} options={{ headerShown: false }} />
-    <stack.Screen name='help' component={Help} options={{ headerShown: false }} />
-    <stack.Screen name='bottomtab' component={BottomTab}  options={{ headerShown: true }}/>
+    {/* <stack.Screen name='verify' component={Verify} options={{ headerShown: false }} /> */}
+    {/* <stack.Screen name='help' component={Help} options={{ headerShown: false }} /> */}
+    <stack.Screen name='bottomtab' component={BottomTab}  options={{ headerShown: false }}/>
     </stack.Navigator>
   )
 

@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#d3d3d3',
     width: '50%',
-    zIndex: 3,
+    // zIndex: 3,
   },
   optionText: {
     fontSize: 18,
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     padding: 20,
-
+    zIndex: 1,
   },
   text: {
     color: '#fff',
@@ -189,6 +189,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    zIndex: 3,
   },
   logo: {
     width: 50,
@@ -213,7 +214,7 @@ const styles = StyleSheet.create({
   },
   firstHeader: {
     // marginRight: 5,
-    marginLeft: 110,
+    marginLeft: 90,
     flex: 1,
     textAlign: 'right',
   }
