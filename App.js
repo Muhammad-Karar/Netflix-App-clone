@@ -17,7 +17,7 @@ import Home from './Screens/Home';
 import Games from './Screens/Games';
 import NewHot from './Screens/NewHot';
 import MyNetflix from './Screens/MyNetflix';
-
+import MovieScreen from './Screens/MovieScreen';
 
 const stack = createNativeStackNavigator();
 const bottomTab = createBottomTabNavigator();
@@ -94,6 +94,7 @@ function App() {
     {/* <stack.Screen name='verify' component={Verify} options={{ headerShown: false }} /> */}
     {/* <stack.Screen name='help' component={Help} options={{ headerShown: false }} /> */}
     <stack.Screen name='bottomtab' component={BottomTab}  options={{ headerShown: false }}/>
+    <stack.Screen name='Movie' component={MovieScreen} options={{ headerShown: false }}/>
     </stack.Navigator>
   )
 
