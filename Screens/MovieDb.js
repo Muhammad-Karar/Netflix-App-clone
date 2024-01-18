@@ -1,5 +1,9 @@
 import axios from 'axios';
 import { apikey } from './Index';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { trendingMovieStore } from '../src/reducer/counterReducer';
+
+// const dispatch = useDispatch();
 
 // Endpoints
 const apiBaseUrl = 'https://api.themoviedb.org/3';
@@ -30,6 +34,9 @@ const apiCall = async (endpoint, params) => {
 
 export const fetchTrendingMovies = () => {
   return apiCall(trendingMovieEndPoint);
+    // const trendingMov = apiCall(trendingMovieEndPoint);
+    // dispatch(trendingMovieStore(trendingMov));
+    // return trendingMov;
 };
 
 export const fetchUpcomingMovies = () => {

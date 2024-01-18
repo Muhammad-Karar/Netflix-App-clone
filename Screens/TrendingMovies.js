@@ -4,6 +4,7 @@ import React from 'react';
 import { Text, StyleSheet, View, TouchableWithoutFeedback, Image, Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { image500 } from './MovieDb';
+// import { useSelector, useDispatch } from 'react-redux';
 
 var {width, height} = Dimensions.get('window');
 
@@ -22,7 +23,8 @@ const MovieCard = ({ item, handleClick }) => {
 };
 
 export default function TrendingMovies({data}) {
-
+  // const count = useSelector(state => state.counter.value);
+  // const trenMoveData = useSelector(state => state.counter.trendingMovieState)
     const navigation = useNavigation();
     const handleClick = (item) =>{
         navigation.navigate('Movie', item);
@@ -48,7 +50,7 @@ export default function TrendingMovies({data}) {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1, 
+    // flex: 1, `
     // backgroundColor: 'white', 
     // alignItems: 'center', 
     // justifyContent: 'center',

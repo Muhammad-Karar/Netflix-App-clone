@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { image342, image500 } from './MovieDb';
 
 var { width, height } = Dimensions.get('window');
+
 export default function TopRatedM({ title, data }) {
     let movieName = 'Ant-Man and the Wasp: Quantumania';
     const navigation = useNavigation();

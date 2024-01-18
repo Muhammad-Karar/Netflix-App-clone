@@ -18,6 +18,9 @@ import Games from './Screens/Games';
 import NewHot from './Screens/NewHot';
 import MyNetflix from './Screens/MyNetflix';
 import MovieScreen from './Screens/MovieScreen';
+import { Provider } from 'react-redux';
+import store from './src/Store';
+
 
 const stack = createNativeStackNavigator();
 const bottomTab = createBottomTabNavigator();
@@ -74,7 +77,7 @@ function App() {
     return person;
   }, []);
 
-  if (initializing) return null;
+  // if (initializing) return null;
 
   // if (!user) {
   //   return (
@@ -91,8 +94,8 @@ function App() {
 
   return(
     <stack.Navigator>
-    {/* <stack.Screen name='verify' component={Verify} options={{ headerShown: false }} /> */}
-    {/* <stack.Screen name='help' component={Help} options={{ headerShown: false }} /> */}
+    {/* <stack.Screen name='verify' component={Verify} options={{ headerShown: false }} />
+    <stack.Screen name='help' component={Help} options={{ headerShown: false }} /> */}
     <stack.Screen name='bottomtab' component={BottomTab}  options={{ headerShown: false }}/>
     <stack.Screen name='Movie' component={MovieScreen} options={{ headerShown: false }}/>
     </stack.Navigator>
@@ -104,9 +107,12 @@ function App() {
 
 export default () =>{
   return(
-    <NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
       <App/>
     </NavigationContainer>
+    </Provider>
+    
   )
 }
 

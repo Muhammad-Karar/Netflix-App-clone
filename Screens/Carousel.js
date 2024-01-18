@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginRight: 5,
     // backgroundColor: 'blue',
-    width: 350,
+    width: 400,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',

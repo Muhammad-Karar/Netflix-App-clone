@@ -25,21 +25,21 @@ export default function Home() {
 
   const getTrendingMovies = async ()=>{
     const data = await fetchTrendingMovies();
-    console.log('got ', data);
+    // console.log('got ', data);
     if(data && data.results) setTrending(data.results);
     setLoading(false);
   }
 
   const getUpComingMovies = async ()=>{
     const data = await fetchUpcomingMovies();
-    console.log('got ', data);
+    // console.log('got ', data);
     if(data && data.results) setUpComing(data.results);
     setLoading(false);
   }
 
   const getTopRatedMovies = async ()=>{
     const data = await fetchTopRatedMovies();
-    console.log('got ', data);
+    // console.log('got ', data);
     if(data && data.results) setTopRated(data.results);
     setLoading(false);
   }
