@@ -1,32 +1,89 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { fetchTrendingMovies } from '../../Screens/MovieDb';
+import { fetchUpcomingMovies } from '../../Screens/MovieDb';
+import { fetchTopRatedMovies } from '../../Screens/MovieDb';
+
+
+export const fetchTrendingMoviesAsync = createAsyncThunk(
+  'counter/fetchTrendingMovies',
+  async () => {
+    const data = await fetchTrendingMovies();
+    return data.results;
+  }
+);
+
+export const fetchUpcomingMoviesAsync = createAsyncThunk(
+  'counter/fetchUpcomingMovies',
+  async () => {
+    const data = await fetchUpcomingMovies();
+    return data.results;
+  }
+);
+
+export const fetchTopRatedMoviesAsync = createAsyncThunk(
+  'counter/fetchTopRatedMovies',
+  async () => {
+    const data = await fetchTopRatedMovies();
+    return data.results;
+  }
+);
 
 export const counterReducer = createSlice({
   name: 'counter',
   initialState: {
     value: 0,
-    trendingMovieState : []
+    trendingMovieState: [],
+    upcomingMovieState: [],
+    TopRatedMovieState: [],
+    status: 'idle',
   },
   reducers: {
-    trendingMovieStore: (state, action) => {
-      state.trendingMovieState = state.trendingMovieState.push(action.payload);
+    increment: (state) => {
+      state.value += 1;
     },
-    increment: state => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value += 1
-    },
-    decrement: state => {
-      state.value -= 1
+    decrement: (state) => {
+      state.value -= 1;
     },
     incrementByAmount: (state, action) => {
-      state.value += action.payload
-    }
-  }
-})
+      state.value += action.payload;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchTrendingMoviesAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchTrendingMoviesAsync.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.trendingMovieState = action.payload;
+      })
+      .addCase(fetchTrendingMoviesAsync.rejected, (state) => {
+        state.status = 'failed';
+      })
+      .addCase(fetchUpcomingMoviesAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchUpcomingMoviesAsync.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.trendingMovieState = action.payload;
+      })
+      .addCase(fetchUpcomingMoviesAsync.rejected, (state) => {
+        state.status = 'failed';
+      })
+      .addCase(fetchTopRatedMoviesAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchTopRatedMoviesAsync.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.trendingMovieState = action.payload;
+      })
+      .addCase(fetchTopRatedMoviesAsync.rejected, (state) => {
+        state.status = 'failed';
+      });
+  },
 
-// Action creators are generated for each case reducer function
-export const { increment, decrement, trendingMovieStore, incrementByAmount } = counterReducer.actions
+});
 
-export default counterReducer.reducer
+export const { increment, decrement, incrementByAmount } = counterReducer.actions;
+
+export default counterReducer.reducer;

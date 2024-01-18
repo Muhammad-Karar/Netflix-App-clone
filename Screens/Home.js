@@ -3,46 +3,63 @@ import { firebase } from '../Firebase/Config';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { FontAwesome } from 'react-native-vector-icons';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import TrendingMovies from './TrendingMovies';
 import MovieList from './MovieList';
 import TopRatedM from './TopRatedM';
-import { fetchTrendingMovies } from './MovieDb';
-import { fetchUpcomingMovies } from './MovieDb';
-import { fetchTopRatedMovies } from './MovieDb';
+// import { fetchTrendingMovies } from './MovieDb';
+// import { fetchUpcomingMovies } from './MovieDb';
+// import { fetchTopRatedMovies } from './MovieDb';
+
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTrendingMoviesAsync } from '../src/reducer/counterReducer';
+import { fetchUpcomingMoviesAsync } from '../src/reducer/counterReducer';
+import { fetchTopRatedMoviesAsync } from '../src/reducer/counterReducer';
+
+
 
 export default function Home() {
-  const [trending, setTrending] = useState([]);
-  const [upcoming, setUpComing] = useState([]);
-  const [toprated, setTopRated] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [trending, setTrending] = useState([]);
+  // const [upcoming, setUpComing] = useState([]);
+  // const [toprated, setTopRated] = useState([]);
+  // const [loading, setLoading] = useState(true);
+
+  const dispatch = useDispatch();
+  const trendingMovies = useSelector((state) => state.counter.trendingMovieState);
+  const upcomingMovies = useSelector((state) => state.counter.upcomingMovieState);
+  const TopRatedMovies = useSelector((state) => state.counter.TopRatedMovieState);
 
   useEffect(()=>{
-    getTrendingMovies();
-    getUpComingMovies();
-    getTopRatedMovies();
-  }, []);
+    // getTrendingMovies();
+    // getUpComingMovies();
+    // getTopRatedMovies();
+    dispatch(fetchTrendingMoviesAsync());
+    dispatch(fetchUpcomingMoviesAsync());
+    dispatch(fetchTopRatedMoviesAsync());
+  }, [dispatch]);
 
-  const getTrendingMovies = async ()=>{
-    const data = await fetchTrendingMovies();
-    // console.log('got ', data);
-    if(data && data.results) setTrending(data.results);
-    setLoading(false);
-  }
 
-  const getUpComingMovies = async ()=>{
-    const data = await fetchUpcomingMovies();
-    // console.log('got ', data);
-    if(data && data.results) setUpComing(data.results);
-    setLoading(false);
-  }
+  // const getTrendingMovies = async ()=>{
+  //   const data = await fetchTrendingMovies();
+  //   // console.log('got ', data);
+  //   if(data && data.results) setTrending(data.results);
+  //   setLoading(false);
+  // }
 
-  const getTopRatedMovies = async ()=>{
-    const data = await fetchTopRatedMovies();
-    // console.log('got ', data);
-    if(data && data.results) setTopRated(data.results);
-    setLoading(false);
-  }
+  // const getUpComingMovies = async ()=>{
+  //   const data = await fetchUpcomingMovies();
+  //   // console.log('got ', data);
+  //   if(data && data.results) setUpComing(data.results);
+  //   setLoading(false);
+  // }
+
+  // const getTopRatedMovies = async ()=>{
+  //   const data = await fetchTopRatedMovies();
+  //   // console.log('got ', data);
+  //   if(data && data.results) setTopRated(data.results);
+  //   setLoading(false);
+  // }
 
 
   return (
@@ -66,11 +83,11 @@ export default function Home() {
 
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 10}}>
 
-      { trending.length>0 && <TrendingMovies data={trending}/>}
+      {trendingMovies.length > 0 && <TrendingMovies data={trendingMovies} />}
 
-      <MovieList title="Upcoming" data={upcoming}/>
+      <MovieList title="Upcoming" data={upcomingMovies}/>
 
-      <TopRatedM title="TopRated" data= {toprated}/>
+      <TopRatedM title="TopRated" data= {TopRatedMovies}/>
 
       </ScrollView>
 
@@ -84,7 +101,7 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: `rgba(0, 0, 0, 0.9)`,
+    backgroundColor: 'rgba(0, 0, 0, 0.9)',
     // alignItems: 'center',
     // justifyContent: 'center',
   },
