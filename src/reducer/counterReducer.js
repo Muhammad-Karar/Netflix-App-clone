@@ -65,7 +65,7 @@ export const counterReducer = createSlice({
       })
       .addCase(fetchUpcomingMoviesAsync.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.trendingMovieState = action.payload;
+        state.upcomingMovieState = action.payload;
       })
       .addCase(fetchUpcomingMoviesAsync.rejected, (state) => {
         state.status = 'failed';
@@ -75,7 +75,7 @@ export const counterReducer = createSlice({
       })
       .addCase(fetchTopRatedMoviesAsync.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.trendingMovieState = action.payload;
+        state.TopRatedMovieState = action.payload;
       })
       .addCase(fetchTopRatedMoviesAsync.rejected, (state) => {
         state.status = 'failed';
