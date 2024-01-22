@@ -84,3 +84,97 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   }
 });
+
+
+
+
+// import React from 'react';
+// import { Text, StyleSheet, View, TouchableWithoutFeedback, Image, Dimensions } from 'react-native';
+// import Video from 'react-native-video';
+// import { image500 } from './MovieDb';
+
+// var { width, height } = Dimensions.get('window');
+
+// const MovieCard = ({ item, handleClick }) => {
+//   const isVideoAvailable = typeof item.videoUri === 'string' && item.videoUri.trim() !== '';
+
+//   return (
+//     <TouchableWithoutFeedback onPress={() => handleClick(item)}>
+//       <View>
+//         {isVideoAvailable ? (
+//           <Video
+//             source={{ uri: item.videoUri }}
+//             style={styles.video}
+//             resizeMode="contain"
+//             controls={true}
+//           />
+//         ) : (
+//           <Image
+//             source={{ uri: image500(item.poster_path) }}
+//             style={styles.image}
+//             resizeMode="contain"
+//           />
+//         )}
+//         <Text style={styles.title}>
+//           {item.title.length > 14 ? item.title.slice(0, 14) + '...' : item.title}
+//         </Text>
+//       </View>
+//     </TouchableWithoutFeedback>
+//   );
+// };
+
+// export default function TrendingMovies() {
+//   const navigation = useNavigation();
+//   const [trendingMovies, setTrendingMovies] = React.useState([]);
+
+//   React.useEffect(() => {
+//     const fetchTrendingData = async () => {
+//       const trendingData = await fetchTrendingMovies();
+//       const moviesWithVideos = await Promise.all(
+//         trendingData.results.map(async (movie) => {
+//           const videos = await fetchMovieVideos(movie.id);
+//           const videoUri = videos.results[0]?.key || null;
+//           return { ...movie, videoUri };
+//         })
+//       );
+//       setTrendingMovies(moviesWithVideos);
+//     };
+
+//     fetchTrendingData();
+//   }, []);
+
+//   const handleClick = (item) => {
+//     navigation.navigate('Movie', item);
+//   };
+
+//   return (
+//     <View style={styles.container}>
+//       <Text style={styles.text1}>Trending</Text>
+//       <Carousel
+//         data={trendingMovies}
+//         renderItem={({ item }) => (
+//           <MovieCard item={item} handleClick={handleClick} videoUri={item.videoUri} />
+//         )}
+//         firstItem={1}
+//         inactiveSlideOpacity={0.60}
+//         sliderWidth={width}
+//         itemWidth={width * 0.87}
+//         slideStyle={{ display: 'flex', alignItems: 'center' }}
+//       />
+//     </View>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     marginBottom: 8,
+//   },
+//   text1: {
+//     color: 'white',
+//     fontSize: 20,
+//     marginBottom: 15,
+//     marginLeft: 15,
+//     marginRight: 4,
+//     fontWeight: 'bold',
+//   },
+// });
